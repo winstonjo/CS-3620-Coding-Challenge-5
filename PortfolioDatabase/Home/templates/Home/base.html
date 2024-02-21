@@ -10,17 +10,16 @@
           crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark">
-    <a href="#" class="navbar-brand"> Hobbies </a>
+<nav class="navbar navbar-light bg-light">
+    <a href="{% url 'Home:index' %}" class="navbar-brand"> Portfolio </a>
     <div class="navbar">
-        <a href="#" class="nav-item nav-link">Add Hobby</a>
-        <a href="#" class="nav-item nav-link">Delete Hobby</a>
-        <a href="#" class="nav-item nav-link">View Hobby</a>
+        <a href="{% url 'Home:hobbies' %}" class="nav-item nav-link mx-4">Hobbies</a>
+        <a href="{% url 'Home:portfolio' %}" class="nav-item nav-link mx-4">Work</a>
+        <a href="{% url 'Home:contact' %}" class="nav-item nav-link mx-4">Contact</a>
     </div>
 </nav>
 
 {% block body %}
-
 
 {% endblock %}
 

@@ -1,9 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Hobby
-from .models import Portfolio
-from django.template import loader
-
+from .models import Hobby, Portfolio
 
 # Create your views here.
 
@@ -18,21 +15,34 @@ def hobbies(request):
     context = {
         'hobbies_list': hobbies_list,
     }
-    return render(request, 'Home/index.html', context)
+    return render(request, 'Home/hobbies.html', context)
 
 
 def portfolio(request):
     portfolio_list = Portfolio.objects.all()
-    return HttpResponse(portfolio_list)
+    context = {
+        'portfolio_list': portfolio_list,
+    }
+    return render(request, 'Home/portfolio.html', context)
 
 
 def contact(request):
-    return HttpResponse('email: winstonjo@mail.weber.edu')
+    return render(request, 'Home/contact.html')
 
 
-def detail(request, id):
-    hobby = Hobby.objects.get(pk=id)
+def hobby_detail(request, hobby_id):
+    hobby = get_object_or_404(Hobby, pk=hobby_id)
     context = {
         'hobby': hobby
     }
-    return render(request, 'Home/detail.html', context)
+    return render(request, 'Home/hobby_detail.html', context)
+
+
+def portfolio_detail(request, portfolio_id):
+    portfolio = get_object_or_404(Portfolio, pk=portfolio_id)
+    context = {
+        'portfolio': portfolio
+    }
+    return render(request, 'Home/portfolio_detail.html', context)
+
+
